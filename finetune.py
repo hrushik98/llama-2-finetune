@@ -1,4 +1,10 @@
-from dataset_to_train import dataset
+
+from datasets import load_dataset
+
+#dataset_name = "timdettmers/openassistant-guanaco" ###Human ,.,,,,,, ###Assistant
+
+dataset_name = 'AlexanderDoria/novel17_test' #french novels
+dataset = load_dataset(dataset_name, split="train")
 
 import pandas as pd
 from datasets import Dataset, Features, Value
