@@ -3,6 +3,7 @@ transformers
 accelerate
 git+https://github.com/huggingface/peft.git
 datasets
+pandas
 bitsandbytes
 einops
 wandb
