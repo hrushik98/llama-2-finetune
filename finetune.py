@@ -98,3 +98,5 @@ for name, module in trainer.model.named_modules():
 
 trainer.train()
 
+model_to_save = trainer.model.module if hasattr(trainer.model, 'module') else trainer.model  # Take care of distributed/parallel training
+model_to_save.save_pretrained("outputs")
