@@ -1,18 +1,12 @@
 import argparse
 import torch
-
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, AutoTokenizer
-model_name = "TinyPixel/Llama-2-7B-bf16-sharded"
-tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-tokenizer.pad_token = tokenizer.eos_token
-
 from peft import LoraConfig, get_peft_model
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, AutoTokenizer
 
 model_name = "TinyPixel/Llama-2-7B-bf16-sharded"
-
-
+tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+tokenizer.pad_token = tokenizer.eos_token
 
 def main():
     parser = argparse.ArgumentParser(description="Text generation using a GPT-like model.")
