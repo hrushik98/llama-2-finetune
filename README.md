@@ -33,20 +33,13 @@ Change the current directory to llama-2-finetune and install the required depend
 
 Run the finetune.py script with your dataset link as an argument:
   ```python
-  !python3 finetune.py "<dataset link>"  
+  !python3 finetune.py "<dataset_link>"  
   ```
 
 ## Infererence of the finetuned model
 1. **After the finetuning is finished, the weights will be saved in the folder "outputs"**
 2. ```python
-   lora_config = LoraConfig.from_pretrained('outputs')
-    model = get_peft_model(model, lora_config)
-
-   text = "<enter the instruction>"
-    device = "cuda:0"
-    
-    inputs = tokenizer(text, return_tensors="pt").to(device)
-    outputs = model.generate(**inputs, max_new_tokens=50)
-    print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+   !python3 infer.py "<prompt>"
+   
    ```
 
