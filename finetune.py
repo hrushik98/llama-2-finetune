@@ -31,7 +31,7 @@ if __name__ == "__main__":
         data['Assistant'][i] = "### Assistant: " + data['Assistant'][i]
         data['text'][i] = data['Human'][i] + data['Assistant'][i]
 
-    data = data['text']
+ 
     dataset = Dataset.from_pandas(data, features=Features({
         "Human": Value("string"),
         "Assistant": Value("string"),
