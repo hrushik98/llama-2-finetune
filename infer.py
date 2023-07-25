@@ -1,7 +1,8 @@
 import argparse
 import torch
 from transformers import LoraConfig
-
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, AutoTokenizer
+model_name = "TinyPixel/Llama-2-7B-bf16-sharded"
 tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token
 
