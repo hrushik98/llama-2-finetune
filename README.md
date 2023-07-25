@@ -37,9 +37,13 @@ Run the finetune.py script with your dataset link as an argument:
   ```
 
 ## Infererence of the finetuned model
-1. **After the finetuning is finished, the weights will be saved in the folder "outputs"**
-2. ```python
+
+1. ```python
    !python3 infer.py "<prompt>"
    
    ```
+
+## Download the weights
+1. **Download the weights from the "outputs" folder**
+   ![Screen Shot 2023-07-25 at 3 13 24 PM](https://github.com/hrushik98/llama-2-finetune/assets/91076764/dc8f9fef-15c4-4bc7-8360-b5ca9db41588)
 
