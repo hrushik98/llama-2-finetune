@@ -40,7 +40,7 @@ def main():
     model = get_peft_model(model, lora_config)
 
     inputs = tokenizer(text, return_tensors="pt").to(device)
-    outputs = model.generate(**inputs, max_new_tokens=50)
+    outputs = model.generate(**inputs, max_new_tokens=200)
     generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
     print("Human: ", text)
