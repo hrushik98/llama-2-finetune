@@ -8,3 +8,4 @@ bitsandbytes
 einops
 wandb
 torch 
+gdown
