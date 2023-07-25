@@ -1,10 +1,50 @@
+import argparse
+import csv
+from datasets import Dataset, Features, Value
+import gdown
+import pandas as pd
+
+def download_google_sheet(google_sheet_url, output_file):
+    # Extract the Google Sheet ID from the URL
+    google_sheet_id = google_sheet_url.split('/')[-2]
+
+    # Download the Google Sheet as a CSV file
+    url = f'https://drive.google.com/uc?id={google_sheet_id}'
+    gdown.download(url, output_file, quiet=False)
+
+if __name__ == "__main__":
+    # Set up argparse to parse command-line arguments
+    parser = argparse.ArgumentParser(description="Download and process Google Sheet as a CSV dataset.")
+    parser.add_argument("google_sheet_url", type=str, help="Google Drive link to the CSV file.")
+    args = parser.parse_args()
+
+    # Download the Google Sheet as a CSV file
+    output_file = 'raw_data.csv'  # The name of the file to save the downloaded data
+    download_google_sheet(args.google_sheet_url, output_file)
+
+    # Process the CSV file as a dataset
+    data = pd.read_csv(output_file)
+
+    data['text'] = "-"
+    for i in range(0, len(data)):
+        data['Human'][i] = "### Human: " + data['Human'][i]
+        data['Assistant'][i] = "### Assistant: " + data['Assistant'][i]
+        data['text'][i] = data['Human'][i] + data['Assistant'][i]
+
+    data = data['text']
+    dataset = Dataset.from_pandas(data, features=Features({
+        "Human": Value("string"),
+        "Assistant": Value("string"),
+        "text": Value("string")
+    }))
+    dataset_rows = dataset['text']
+    dataset = Dataset.from_dict({"text": dataset_rows})
+
+
+
 
 from datasets import load_dataset
 
-#dataset_name = "timdettmers/openassistant-guanaco" ###Human ,.,,,,,, ###Assistant
-
-dataset_name = 'AlexanderDoria/novel17_test' #french novels
-dataset = load_dataset(dataset_name, split="train")
 
 import pandas as pd
 from datasets import Dataset, Features, Value
