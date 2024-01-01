@@ -43,7 +43,7 @@ Run the finetune.py script with your dataset link as an argument:
    
    ```
 
-## Download the weights
+## Time to Download the weights
 1. **Download the weights from the "outputs" folder**
 
    
